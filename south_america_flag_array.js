@@ -15,6 +15,7 @@ document.body.appendChild(sub_btn_cre)
 document.body.appendChild(input_cre)
 
 let i = 0
+let correct = 0
 
 const country = []
 
@@ -36,5 +37,45 @@ const next_btn = document.querySelector("#next_btn")
 const sub_btn = document.querySelector("#sub_btn")
 const input = document.querySelector("#text_flag")
 
+
 if(flag.children.length == 0)
-    flag.innerHTML += '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
+    flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
+
+next_btn.addEventListener('click', ()=>{
+    if(i<=country.length-2)
+    {
+        i++
+        flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
+    }
+    else
+        document.body.innerHTML = "Twój wynik to: " + correct
+})
+
+sub_btn.addEventListener('click', ()=>{
+    if(i<=country.length-2)
+    {
+        if(i<=country.length-3)
+        {
+           if(input.value == country[i])
+            {
+                i++
+                correct++
+                console.log(country[i-1])
+                flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
+            } 
+        }
+        else if(i==country.length-3)
+        {
+            if(input.value == country[i-1])
+            {
+                i++
+                correct++
+                console.log(country[i-1])
+                flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
+            } 
+        }
+        
+    }
+    else
+        document.body.innerHTML = "Twój wynik to: " + correct
+})
