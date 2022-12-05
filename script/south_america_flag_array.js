@@ -42,7 +42,7 @@ if(flag.children.length == 0)
     flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
 
 next_btn.addEventListener('click', ()=>{
-    if(i<=country.length-2)
+    if(i<country.length-1)
     {
         i++
         flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
@@ -52,30 +52,37 @@ next_btn.addEventListener('click', ()=>{
 })
 
 sub_btn.addEventListener('click', ()=>{
-    if(i<=country.length-2)
+    if(input.value == country[i])
     {
-        if(i<=country.length-3)
+        if(i<country.length-1)
         {
-           if(input.value == country[i])
-            {
-                i++
-                correct++
-                console.log(country[i-1])
-                flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
-            } 
+            i++
+            correct++
+            flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
+            input.value = ""
         }
-        else if(i==country.length-3)
+        else
         {
-            if(input.value == country[i-1])
-            {
-                i++
-                correct++
-                console.log(country[i-1])
-                flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
-            } 
+            correct++
+            document.body.innerHTML = "Twój wynik to: " + correct
         }
-        
+    } 
+})
+
+input.addEventListener('change', ()=>{
+    if(input.value == country[i])
+    {
+        if(i<country.length-1)
+        {
+            i++
+            correct++
+            flag.innerHTML = '<img src="img/'+country[i]+'.svg" alt="flaga" style="width: 300px; height: 200px; margin: 5px;">'
+            input.value = ""
+        }
+        else
+        {
+            correct++
+            document.body.innerHTML = "Twój wynik to: " + correct
+        }
     }
-    else
-        document.body.innerHTML = "Twój wynik to: " + correct
 })
